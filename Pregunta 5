@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Producto {
+public:
+    string nombre;
+    double precio;
+    int stock;
+};
+
+class Carrito {
+public:
+    vector<Producto> productos;
+};
+
+int main() {
+    Producto producto;
+    Carrito carrito;
+
+    producto.nombre = "Teclado";
+    producto.precio = 80;
+    producto.stock = 5;
+
+    carrito.productos.push_back(producto);
+
+    double total = 0;
+    for (Producto p : carrito.productos) {
+        total = total + p.precio;
+    }
+
+    cout << "Producto: " << carrito.productos[0].nombre << endl;
+    cout << "Total: S/ " << total << endl;
+
+    carrito.productos[0].precio = -50;
+    producto.stock = -10;
+
+    cout << "Precio modificado: S/ " << carrito.productos[0].precio << endl;
+    cout << "Stock modificado: " << producto.stock << endl;
+
+    return 0;
+}
