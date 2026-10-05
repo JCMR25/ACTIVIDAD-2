@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+class Producto {
+private:
+    double precio;
+    int stock;
+public:
+    Producto(double precioInicial, int stockInicial) {
+        precio = (precioInicial > 0) ? precioInicial : 0.0;
+        stock = (stockInicial >= 0) ? stockInicial : 0;
+    }
+    bool vender() {
+        if (stock > 0) {
+            stock--;
+            return true;
+        }
+        return false;
+    }
+    int getStock() const {
+        return stock;
+    }
+};
+int main() {
+    Producto producto(100.0, 1);
+    if (producto.vender()) {
+        cout << "Venta realizada con exito." << endl;
+    }
+    if (!producto.vender()) {
+        cout << "Venta rechazada: Stock insuficiente (" 
+                  << producto.getStock() << ")." << endl;
+    }
+    return 0;
+}
