@@ -1,0 +1,64 @@
+#ifndef ECOMMERCE_BIEN_H
+#define ECOMMERCE_BIEN_H
+
+#include <string>
+#include <vector>
+using namespace std;
+
+class Producto {
+private:
+    string nombre;
+    double precio;
+    int stock;
+
+public:
+    Producto(string n, double p, int s) {
+        nombre = n;
+        precio = p < 0 ? 0 : p;
+        stock = s < 0 ? 0 : s;
+    }
+
+    string getNombre() {
+        return nombre;
+    }
+
+    double getPrecio() {
+        return precio;
+    }
+
+    bool vender() {
+        if (stock > 0) {
+            stock--;
+            return true;
+        }
+        return false;
+    }
+};
+
+class Carrito {
+private:
+    vector<Producto> productos;
+
+public:
+    bool agregar(Producto producto) {
+        if (producto.getPrecio() > 0) {
+            productos.push_back(producto);
+            return true;
+        }
+        return false;
+    }
+
+    double calcularTotal() {
+        double total = 0;
+        for (Producto producto : productos) {
+            total = total + producto.getPrecio();
+        }
+        return total;
+    }
+
+    int cantidad() {
+        return productos.size();
+    }
+};
+
+#endif
