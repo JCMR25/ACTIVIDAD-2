@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+struct Producto {
+    string nombre;
+    double precio;
+};
+class Carrito {
+private:
+    vector<Producto> items;
+
+public:
+    void agregar(const Producto& producto) {
+        items.push_back(producto);
+    }
+    double calcularTotal() const {
+        double total = 0.0;
+        for (const auto& prod : items) {
+            total += prod.precio;
+        }
+        return total;
+    }
+};
+int main() {
+    Producto teclado{"Teclado Mecánico", 80.0};
+    Producto mouse{"Mouse Óptico", 30.0};
+    Carrito carrito;
+    carrito.agregar(teclado);
+    carrito.agregar(mouse);
+    cout << "Total a pagar: $" << carrito.calcularTotal() << std::endl;
+    return 0;
+}
