@@ -1,0 +1,25 @@
+#include <cassert>
+#include <iostream>
+#include "ecommerce_bien.h"
+using namespace std;
+
+int main() {
+    Producto teclado("Teclado", 80, 2);
+    Producto invalido("Producto", -10, -2);
+    Carrito carrito;
+
+    assert(teclado.getNombre() == "Teclado");
+    assert(teclado.getPrecio() == 80);
+    assert(invalido.getPrecio() == 0);
+    assert(teclado.vender() == true);
+    assert(teclado.vender() == true);
+    assert(teclado.vender() == false);
+
+    assert(carrito.agregar(teclado) == true);
+    assert(carrito.agregar(invalido) == false);
+    assert(carrito.cantidad() == 1);
+    assert(carrito.calcularTotal() == 80);
+
+    cout << "Todas las pruebas unitarias fueron exitosas." << endl;
+    return 0;
+}
